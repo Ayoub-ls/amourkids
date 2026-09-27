@@ -20,7 +20,7 @@ export default function CleanProb({ ctaHref = "/kit" }) {
         <section className="hero">
           <div className="wrap">
             <span className="chip">⚠️ قبل ما تشري تليفون جديد</span>
-            <h1>كل مرة تروح للريباراتور على الكونكتور?...<br />😮 المشكل ممكن يكون غير الوسخ </h1>
+            <h1>كل مرة تروح للريباراتور علاجال الكونكتور?...<br />😮 المشكل ممكن يكون غير الوسخ </h1>
             <p className="flip">الغبار يتراكم في الكونكتور مرة على مرة، و يولي التيليفون ما يشارجيش مليح. و انت تقول راه تخسر</p>
             <a className="btn" href={ctaHref}>شوف كيفاش تنقيه بيدك وبلا ريباراتور 👈</a>
           </div>
