@@ -1,0 +1,136 @@
+import React from "react";
+import kitImage from '../images/kit.jpeg'
+
+/*
+  cleanprob.jsx  -  Page 1 of the funnel (the problem).
+  Props:
+    ctaHref    where the buttons go (your product page)   default "/kit"
+    kitImage   product photo used in the teaser           default "/kit.jpg"
+*/
+
+const CSS = `@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=Tajawal:wght@400;500;700&display=swap");
+.cl{
+  --bg:#F4F5EF; --surface:#FFFFFF; --ink:#12151C; --muted:#5B6270; --line:#DDE0D6;
+  --alert:#E8480F; --ok:#0E9F6E; --lime:#C8F53B; --lime-deep:#6E8F0A;
+  --btn-bg:#12151C; --btn-fg:#C8F53B; --btn-sh:#6E8F0A;
+  --t-alert:#FFE9DF; --t-lime:#F0FAC8; --t-ok:#DAF3E8; --t-grey:#E8EAE2;
+  --font-display:"Cairo","Tajawal","Segoe UI",Tahoma,sans-serif;
+  --font-body:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){.cl:not([data-theme="light"]){
+    --bg:#0E1117; --surface:#181D27; --ink:#F1F3EA; --muted:#A2A9B8; --line:#2A3140;
+    --alert:#FF7440; --ok:#34D399;
+    --btn-bg:#C8F53B; --btn-fg:#12151C; --btn-sh:#7D9C0F;
+    --t-alert:#3A2419; --t-lime:#2C3314; --t-ok:#173A2E; --t-grey:#222835;
+  }}
+.cl[data-theme="dark"]{
+  --bg:#0E1117; --surface:#181D27; --ink:#F1F3EA; --muted:#A2A9B8; --line:#2A3140;
+  --alert:#FF7440; --ok:#34D399;
+  --btn-bg:#C8F53B; --btn-fg:#12151C; --btn-sh:#7D9C0F;
+  --t-alert:#3A2419; --t-lime:#2C3314; --t-ok:#173A2E; --t-grey:#222835;
+}
+.cl *,.cl *::before,.cl *::after{box-sizing:border-box}
+.cl{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:18px;line-height:1.75;-webkit-text-size-adjust:100%}
+.cl img{max-width:100%;display:block}
+.cl a{color:inherit}
+.cl .wrap{max-width:520px;margin:0 auto;padding:0 20px}
+.cl h1,.cl h2,.cl h3{font-family:var(--font-display);font-weight:800;line-height:1.4;margin:0}
+.cl p{margin:0}
+.cl [hidden]{display:none!important}
+.cl .pills{height:12px;background:var(--ink);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='12'><rect width='24' height='12' rx='6'/></svg>") repeat-x;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='12'><rect width='24' height='12' rx='6'/></svg>") repeat-x}
+.cl .btn{display:block;width:100%;border:0;cursor:pointer;text-align:center;text-decoration:none;
+  font-family:var(--font-display);font-weight:800;font-size:20px;line-height:1.5;color:var(--btn-fg);
+  background:var(--btn-bg);padding:15px 20px;border-radius:16px;box-shadow:0 6px 0 var(--btn-sh);
+  transition:transform .12s,box-shadow .12s}
+.cl .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--btn-sh)}
+.cl .btn:disabled{opacity:.7}
+.cl .btn:focus-visible,.cl .opt:focus-within,.cl summary:focus-visible,.cl input:focus-visible,.cl select:focus-visible,.cl .back:focus-visible{outline:3px solid var(--alert);outline-offset:3px}
+.cl .btn small{display:block;font-family:var(--font-body);font-weight:500;font-size:14px;opacity:.9}
+.cl .section{padding:44px 0}
+.cl .section h2{font-size:27px;margin-bottom:22px}
+.cl .foot{padding:26px 0 40px;text-align:center;color:var(--muted);font-size:14px}
+.cl .hero{padding:32px 0 32px}
+.cl .hero .chip{display:inline-block;background:var(--alert);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;padding:3px 14px;border-radius:99px;margin-bottom:18px;transform:rotate(-2deg)}
+.cl .hero h1{font-size:34px;margin-bottom:16px}
+.cl .hero .flip{color:var(--muted);font-size:19px;margin-bottom:26px}
+@media (prefers-reduced-motion:no-preference){.cl .hero .btn{animation:nudge 2.4s ease-in-out 1.2s 2}
+@keyframes nudge{0%,100%{transform:none}50%{transform:translateY(-5px)}}}
+.cl .cards{display:grid;gap:14px}
+.cl .card{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:2px solid var(--line);border-inline-start:8px solid var(--alert);border-radius:18px;padding:16px 16px}
+.cl .card .e{font-size:30px;line-height:1.2}
+.cl .card b{font-family:var(--font-display);display:block;font-size:19px;margin-bottom:2px}
+.cl .reframe{background:var(--ink);color:var(--bg);padding:46px 0;text-align:center}
+.cl .reframe .big{font-family:var(--font-display);font-weight:800;font-size:31px;line-height:1.45;margin-bottom:14px}
+.cl .reframe .big em{font-style:normal;color:var(--lime)}
+.cl .reframe p{font-size:19px;opacity:.9}
+.cl .cost p{margin-bottom:14px}
+.cl .cost .hl{background:var(--t-lime);padding:14px 18px;border-radius:16px;font-weight:700}
+.cl .peek{text-align:center}
+.cl .peek figure{margin:0 0 26px}
+.cl .peek img{width:100%;margin:0 auto;border-radius:18px;border:6px solid var(--surface);box-shadow:0 14px 30px rgba(10,15,30,.22)}
+.cl .peek figcaption{margin-top:20px;font-size:18px;color:var(--muted)}`;
+
+export default function CleanProb({ ctaHref = "/kit" }) {
+  return (
+    <div className="cl" dir="rtl" lang="ar">
+      <style>{CSS}</style>
+      <main>
+        <div className="pills" />
+
+        <section className="hero">
+          <div className="wrap">
+            <span className="chip">⚠️ خدمتك فيها غبار؟ تيليفونك يخلص</span>
+            <h1>تخدم في بلاصة فيها غبار و تيليفونك معاك؟...<br />😮 الكونكتور و الباف راهم يتعمرو بالوسخ</h1>
+            <p className="flip">كل نهار غبار و تراب يدخل في الكونكتور و الباف، و انت ما تشوفوش. و بعد مدة يولي التيليفون يحبس ما يشارجي و الصوت يولي ضعيف</p>
+            <a className="btn" href={ctaHref}>شوف كيفاش تنقيه و تحميه من الغبار 👈</a>
+          </div>
+        </section>
+
+        <div className="pills" />
+
+        <section className="section">
+          <div className="wrap">
+            <h2>عندك واحدة من هاذ الحالات؟</h2>
+            <div className="cards">
+              <div className="card"><span className="e">🏗️</span><div><b>تيليفونك ديما معاك</b>في الجيب، في الخدمة، في وسط الغبار. تمسح الشاشة، و الداخل ما تنقيهش.</div></div>
+              <div className="card"><span className="e">🔌</span><div><b>الشارجور ما يشدش</b>تحطو يشارجي، تحرك فيه شوية يحبس. و تولي تلوي في الكابل.</div></div>
+              <div className="card"><span className="e">🔊</span><div><b>الصوت ضعيف</b>تهدر في التيليفون و ما تسمعش مليح، و تولي تقول لللي يهدر معاك: عاود، عاود.</div></div>
+              <div className="card"><span className="e">🛠️</span><div><b>الريباراتور</b>تروح، تستنى، و تخلص . و كي ترجع للخدمة، الغبار يرجع يعمر التيليفون من جديد.</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="reframe">
+          <div className="wrap">
+            <div className="big">المشكل مش دايماً في <em>التليفون</em>.</div>
+            <p>الغبار يدخل كل نهار في الكونكتور و الباف، و ماراهش رايح يخرجش وحدو</p>
+          </div>
+        </section>
+
+        <section className="section cost">
+          <div className="wrap">
+            <h2>و لوكان ما تنقيهش و ما تغطيهش؟</h2>
+            <p>الغبار يزيد يتراكم كل نهار، و التيليفون يتعمر لداخل بالوسخ.</p>
+            <p>وكي يخسر، لازم تخلص دراهم باش تريباريه: من 1500 حتى 10000 دج على حساب التيليفون و العطل.</p>
+            <p className="hl">الخبر المليح؟ التنظيف ساهل، و تقدر ديرو في الدار. و كي تغطي الكونكتور و الباف، الغبار ما يدخلش بسهولة.</p>
+          </div>
+        </section>
+
+        <section className="section peek">
+          <div className="wrap">
+            <figure>
+              <img src={kitImage} alt="كيت تنظيف الهاتف: فرشات، ملقط، ملصقات و سدادات" width="660" height="495" />
+              <figcaption>كيت واحد ينقي و يحمي: فرشات، ملقط، سدادات و ملصقات.</figcaption>
+            </figure>
+            <a className="btn" href={ctaHref}>اكتشف الكيت اللي ينقي و يحمي تيليفونك من الغبار 👈</a>
+          </div>
+        </section>
+
+        <div className="pills" />
+        <div className="foot wrap">الدفع عند الاستلام · التوصيل لكل الولايات</div>
+      </main>
+    </div>
+  );
+}

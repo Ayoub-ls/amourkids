@@ -1,0 +1,45 @@
+/* Dashboard is a separate, LTR, plain-admin UI — deliberately not styled
+   like the Arabic landing pages, since only you (the store owner) sees it. */
+
+.db-shell { min-height: 100vh; background: #F4F5F7; color: #14161B; font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
+
+.db-header { display: flex; align-items: center; gap: 24px; padding: 14px 24px; background: #14161B; color: #fff; }
+.db-brand { font-weight: 700; font-size: 18px; }
+.db-nav { flex: 1; display: flex; gap: 16px; }
+.db-nav a { color: #C9CDD6; text-decoration: none; font-size: 14px; }
+.db-nav a:hover { color: #fff; }
+.db-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #C9CDD6; }
+.db-user button { background: #262A33; color: #fff; border: 0; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 13px; }
+.db-user button:hover { background: #34394A; }
+
+.db-main { padding: 24px; max-width: 1200px; margin: 0 auto; }
+
+.db-loading { padding: 40px; text-align: center; color: #6B7280; }
+
+.db-stats { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.db-stat { background: #fff; border: 1px solid #E4E7EC; border-radius: 12px; padding: 16px 20px; min-width: 160px; }
+.db-stat span { display: block; font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+
+.db-filters { display: flex; gap: 12px; margin-bottom: 16px; }
+.db-filters select { padding: 8px 12px; border: 1px solid #D0D5DD; border-radius: 8px; font: inherit; background: #fff; }
+
+.db-table-wrap { background: #fff; border: 1px solid #E4E7EC; border-radius: 12px; overflow-x: auto; }
+.db-table { width: 100%; border-collapse: collapse; font-size: 13.5px; white-space: nowrap; }
+.db-table th, .db-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #EEF0F3; }
+.db-table th { background: #F9FAFB; font-weight: 600; color: #4B5262; position: sticky; top: 0; }
+.db-table select { padding: 4px 8px; border: 1px solid #D0D5DD; border-radius: 6px; font: inherit; }
+.db-row-new { background: #FFF9E8; }
+
+.db-toast { position: fixed; top: 18px; right: 18px; z-index: 50; background: #14161B; color: #fff; padding: 14px 18px; border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,.25); max-width: 320px; cursor: pointer; animation: db-toast-in .2s ease-out; }
+.db-toast-title { font-weight: 700; margin-bottom: 4px; }
+.db-toast-body { font-size: 13px; color: #C9CDD6; line-height: 1.5; }
+@keyframes db-toast-in { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.db-login { min-height: 100vh; display: grid; place-items: center; background: #14161B; }
+.db-login-card { background: #fff; padding: 32px; border-radius: 16px; width: 320px; display: flex; flex-direction: column; gap: 14px; }
+.db-login-card h1 { font-size: 20px; margin: 0 0 6px; }
+.db-login-card label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #4B5262; }
+.db-login-card input { padding: 10px 12px; border: 1px solid #D0D5DD; border-radius: 8px; font: inherit; }
+.db-login-card button { margin-top: 6px; padding: 10px; border: 0; border-radius: 8px; background: #14161B; color: #fff; font-weight: 600; cursor: pointer; }
+.db-login-card button:disabled { opacity: .6; cursor: default; }
+.db-error { color: #C0341F; font-size: 13px; }
