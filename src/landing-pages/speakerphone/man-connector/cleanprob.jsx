@@ -67,7 +67,7 @@ export default function CleanProb({ ctaHref = "/kit" }) {
         </section>
 
         <div className="pills" />
-        <div className="foot wrap">الدفع عند الاستلام · التوصيل لكل الولايات</div>
+        <div className="foot wrap">الدفع عند الاستلام · التوصيل مجاني لكل الولايات</div>
       </main>
     </div>
   );

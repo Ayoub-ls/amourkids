@@ -1,9 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AuthProvider } from "./dashboard/AuthContext";
 import ProtectedRoute from "./dashboard/ProtectedRoute";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import Login from "./dashboard/Login";
 import OrdersPage from "./dashboard/OrdersPage";
+import PixelTracker from "./shared/PixelTracker";
 
 import EngBook from './landing-pages/engbook/engbook.jsx'
 import EngProb from './landing-pages/engbook/engprob.jsx'
@@ -25,9 +26,41 @@ import WomanCleangirlProb from './landing-pages/speakerphone/woman-cleangirl/cle
 import WomanTravelBook from './landing-pages/speakerphone/woman-travel/cleanbook.jsx'
 import WomanTravelProb from './landing-pages/speakerphone/woman-travel/cleanprob.jsx'
 
+function FreeDeliveryHeader() {
+  const { pathname } = useLocation();
+
+  if (pathname.startsWith("/dashboard")) return null;
+
+  return (
+    <header
+      dir="rtl"
+      style={{
+        background: "linear-gradient(90deg, #0f8a4b, #18a85d)",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8,
+        minHeight: 42,
+        padding: "8px 16px",
+        fontFamily: "Tajawal, Segoe UI, Tahoma, sans-serif",
+        fontSize: 16,
+        fontWeight: 700,
+        lineHeight: 1.35,
+        textAlign: "center",
+      }}
+    >
+      <span aria-hidden="true">🚚</span>
+      <span>توصيل مجاني إلى جميع الولايات</span>
+    </header>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <PixelTracker />
+      <FreeDeliveryHeader />
       <Routes>
         {/* English words book funnel */}
         <Route path="/engprob" element={<EngProb ctaHref="/engprob/engbook" />} />

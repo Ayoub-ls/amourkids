@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { supabase } from "./supabaseClient";
-import { WILAYAS } from "./wilayas";
+import { getBaladiyas, WILAYAS } from "./wilayas";
+import { trackPurchase } from "./pixel";
 
 /*
   OrderForm.jsx  -  the order form used by every product's page 2.
@@ -39,6 +40,11 @@ export default function OrderForm({
 
   const total = qty * price[qty];
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const baladiyas = getBaladiyas(form.wilaya);
+
+  function setWilaya(e) {
+    setForm((f) => ({ ...f, wilaya: e.target.value, commune: "" }));
+  }
 
   async function submit(e) {
     e.preventDefault();
@@ -75,6 +81,10 @@ export default function OrderForm({
       setSendErr("صرا مشكل في الإرسال. عاود حاول من فضلك.");
       return;
     }
+
+    // Order is safely in Supabase -> tell Meta. Only fires on success,
+    // so failed submissions never count as purchases.
+    trackPurchase({ product, variant, total, quantity: qty, wilaya: form.wilaya });
 
     setDone(phone);
   }
@@ -156,11 +166,11 @@ export default function OrderForm({
       <div className="row2">
         <div className="field">
           <label className="f" htmlFor="of-wilaya">الولاية</label>
-          <select id="of-wilaya" value={form.wilaya} onChange={set("wilaya")}>
+          <select id="of-wilaya" value={form.wilaya} onChange={setWilaya}>
             <option value="">اختر</option>
-            {WILAYAS.map((w, i) => (
-              <option key={w} value={w}>
-                {String(i + 1).padStart(2, "0")} - {w}
+            {WILAYAS.map((wilaya) => (
+              <option key={wilaya.code} value={wilaya.name_ar}>
+                {String(wilaya.code).padStart(2, "0")} - {wilaya.name_ar}
               </option>
             ))}
           </select>
@@ -168,7 +178,20 @@ export default function OrderForm({
         </div>
         <div className="field">
           <label className="f" htmlFor="of-commune">البلدية</label>
-          <input type="text" id="of-commune" autoComplete="address-level2" value={form.commune} onChange={set("commune")} />
+          <select
+            id="of-commune"
+            autoComplete="address-level2"
+            value={form.commune}
+            onChange={set("commune")}
+            disabled={!form.wilaya}
+          >
+            <option value="">{form.wilaya ? "اختر البلدية" : "اختر الولاية أولا"}</option>
+            {baladiyas.map((baladiya) => (
+              <option key={baladiya.name_ar} value={baladiya.name_ar}>
+                {baladiya.name_ar}
+              </option>
+            ))}
+          </select>
           <div className="err">{errors.commune}</div>
         </div>
       </div>
@@ -202,7 +225,7 @@ export default function OrderForm({
 
       <div className="trust">
         <div>الدفع عند الاستلام</div>
-        <div>التوصيل لكل الولايات</div>
+        <div>التوصيل مجاني لكل الولايات</div>
         <div>نتصلو بيك في الهاتف قبل الشحن</div>
       </div>
     </form>

@@ -216,7 +216,7 @@ export default function EngBook({ backHref = "/" }) {
         </section>
 
         <div className="strip" />
-        <div className="foot wrap">الدفع عند الاستلام · التوصيل لكل الولايات</div>
+        <div className="foot wrap">الدفع عند الاستلام · التوصيل مجاني لكل الولايات</div>
 
           <div className={"sticky" + (hideSticky ? " off" : "")}>
             <div className="inner">

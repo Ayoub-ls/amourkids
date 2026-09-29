@@ -1,11 +1,9 @@
-// The 58 wilayas, used by every order form (page 2 of every funnel).
-export const WILAYAS = [
-  "أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار",
-  "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر",
-  "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة",
-  "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض",
-  "إليزي", "برج بوعريريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي",
-  "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "عين تموشنت",
-  "غرداية", "غليزان", "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس",
-  "عين صالح", "عين قزام", "تقرت", "جانت", "المغير", "المنيعة",
-];
+import locationData from "./algeria_wilayas_baladiyas.json";
+
+// Canonical list of Algeria's wilayas and their baladiyas, shared by every
+// order form. Names are kept in Arabic because those are stored with orders.
+export const WILAYAS = locationData.wilayas;
+
+export function getBaladiyas(wilayaName) {
+  return WILAYAS.find((wilaya) => wilaya.name_ar === wilayaName)?.baladiyas ?? [];
+}

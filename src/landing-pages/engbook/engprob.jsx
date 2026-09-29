@@ -137,7 +137,7 @@ export default function EngProb({ ctaHref = "/book", bookImage = "/book.jpg" }) 
         </section>
 
         <div className="strip" />
-        <div className="foot wrap">الدفع عند الاستلام · التوصيل لكل الولايات</div>
+        <div className="foot wrap">الدفع عند الاستلام · التوصيل مجاني لكل الولايات</div>
       </main>
     </div>
   );
