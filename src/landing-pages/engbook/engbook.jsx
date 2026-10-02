@@ -161,7 +161,7 @@ export default function EngBook({ backHref = "/" }) {
               <img src={bookImage} alt="First English Words Sound Book" width="469" height="545" />
               <div className="price-line"><span className="now">7900</span><span className="unit">دج</span></div>
             </div>
-            <button className="btn" type="button" onClick={goOrder}>نطلب الآن – الدفع عند الاستلام</button>
+            <button className="btn" type="button" onClick={goOrder}>اطلب الآن – الدفع عند الاستلام</button>
           </section>
         </div>
 
@@ -169,10 +169,10 @@ export default function EngBook({ backHref = "/" }) {
           <div className="wrap">
             <h2>علاش الأولاد يحبوه؟</h2>
             <div className="benefits">
-              <div className="ben"><div className="ico">🙌</div><div><h3>بلا شاشة</h3><p>يلعب بيديه و يلمس الصور، و عينيه بعيدين على التابلت.</p></div></div>
-              <div className="ben"><div className="ico">🔊</div><div><h3>نطق صحيح من أول مرة</h3><p>يسمع الكلمة كيما تتنطق، مش كيما نقولوها نحنا.</p></div></div>
+              <div className="ben"><div className="ico">🙌</div><div><h3>بلا شاشة</h3><p>يلعب بيديه و يلمس الصور، و عينيه بعيدين على التيليفون و التابلت.</p></div></div>
+              <div className="ben"><div className="ico">🔊</div><div><h3>نطق صحيح من أول مرة</h3><p>يسمع الكلمة كيما تتنطق، مش كيما نقولوها حنا.</p></div></div>
               <div className="ben"><div className="ico">🧒</div><div><h3>يتعلم وحدو</h3><p>ما تحتاجش تعرف الإنجليزية باش تعلمو. الكتاب يدير الخدمة.</p></div></div>
-              <div className="ben"><div className="ico">🦁</div><div><h3>+470 صوت</h3><p>حيوانات، خضرة و فواكه، أكلات، أشياء نعرفوها... كل صورة و صوتها.</p></div></div>
+              <div className="ben"><div className="ico">🦁</div><div><h3>+470 صوت</h3><p>حيوانات، خضر و فواكه، أكلات، أشياء نعرفوها... كل صورة و اصواتها.</p></div></div>
             </div>
           </div>
         </section>
@@ -185,7 +185,7 @@ export default function EngBook({ backHref = "/" }) {
               <div className="step">يسمع الكلمة بالإنجليزية</div>
               <div className="step">يعاودها بروحو، و يزيد يلمس</div>
             </div>
-            <p className="steps-note">من 2 سنين حتى 12 سنة، كل واحد يبدأ من الكلمات اللي يعجبوه.</p>
+            <p className="steps-note">من 2 سنين حتى 13 سنة، كل واحد يبدأ من الكلمات اللي يعجبوه.</p>
           </div>
         </section>
 
@@ -218,12 +218,12 @@ export default function EngBook({ backHref = "/" }) {
         <div className="strip" />
         <div className="foot wrap">الدفع عند الاستلام · التوصيل مجاني لكل الولايات</div>
 
-          <div className={"sticky" + (hideSticky ? " off" : "")}>
-            <div className="inner">
-              <div className="p">{PRICE[1]} دج<small>الدفع عند الاستلام</small></div>
-              <button className="btn" type="button" onClick={goOrder}>اطلب الآن</button>
-            </div>
+        <div className={"sticky" + (hideSticky ? " off" : "")}>
+          <div className="inner">
+            <div className="p">{PRICE[1]} دج<small>الدفع عند الاستلام</small></div>
+            <button className="btn" type="button" onClick={goOrder}>اطلب الآن</button>
           </div>
+        </div>
       </main>
     </div>
   );

@@ -1,0 +1,66 @@
+This is an EXAMPLE using the man-baf copy I have from earlier in our chat.
+Paste me your actual current cleanprob.jsx for man-baf and I'll send back the
+real, exact patch instead of this illustration — the word counts in
+docs/man-baf-script.md must match your file's text exactly, or the highlight
+will drift.
+
+WHAT CHANGES in cleanprob.jsx:
+
+1. Two new imports:
+     import { ReadAlongProvider } from "../../shared/readAlong/ReadAlongContext";
+     import ReadAlongText from "../../shared/readAlong/ReadAlongText";
+     import ReadAlongButton from "../../shared/readAlong/ReadAlongButton";
+   (adjust the relative path to wherever shared/ actually sits from this file)
+
+2. Wrap the whole <main> in a provider, pointing at this page's audio + timings:
+
+     <ReadAlongProvider audioSrc="/audio/man-baf.mp3" timingsSrc="/audio/man-baf.json">
+       <main>
+         ...
+       </main>
+     </ReadAlongProvider>
+
+3. Add the button once, right under the chip is a natural spot:
+
+     <span className="chip">⚠️ قبل ما تشري تليفون جديد</span>
+     <ReadAlongButton />
+     <h1>...
+
+4. Replace each narrated block's plain text with <ReadAlongText>, numbering
+   `order` in reading order (1, 2, 3, ...). The headline has a <br/> and an
+   emoji in the middle, so ReadAlongText wraps just the words, and the emoji
+   stays outside it:
+
+   BEFORE:
+     <h1>كل مرة تروح للريباراتور على الباف؟...<br />😮 المشكل ممكن يكون غير الوسخ</h1>
+
+   AFTER:
+     <h1>
+       <ReadAlongText order={1} text="كل مرة تروح للريباراتور على الباف؟ المشكل ممكن يكون غير الوسخ" />
+       {" "}😮
+     </h1>
+     {/* the "..." and the line break are dropped since they're not spoken words */}
+
+   BEFORE:
+     <p className="flip">الغبار يتراكم في الباف مرة على مرة، و يولي الصوت ضعيف و ما تسمعش مليح. و تولي تقول راه خسر</p>
+
+   AFTER:
+     <p className="flip">
+       <ReadAlongText order={2} text="الغبار يتراكم في الباف مرة على مرة، و يولي الصوت ضعيف و ما تسمعش مليح. و تولي تقول راه خسر." />
+     </p>
+
+   Same pattern for each card body (order 3, 4, 5), the reframe (order 6),
+   and the cost paragraphs (order 7). The card TITLES (الصوت ضعيف, البرا,
+   الريباراتور) are included inside their card's block text in the script,
+   so read them as part of that card's sentence, not separately.
+
+5. Leave the CTA buttons, the chip, the figcaption and the footer exactly as
+   they are — nothing there is narrated, so nothing there changes.
+
+THINGS THAT WON'T BE HIGHLIGHTED WORD-FOR-WORD, ON PURPOSE:
+  - "1500" and "5000" are written as one token each but you'll SAY several
+    words for them ("ألف و خمسمية", "خمسة آلاف"). Expect the highlight to
+    drift by a word or two across that one sentence, then resync at the
+    next punctuation. This is a known limitation, not a bug — if it bothers
+    you once you see it, tell me and I'll show you how to keep that one
+    sentence highlighted as a whole unit instead of word-by-word.
