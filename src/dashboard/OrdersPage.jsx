@@ -5,6 +5,8 @@ import "./dashboard.css";
 
 const STATUSES = ["new", "confirmed", "shipped", "delivered", "cancelled"];
 
+const statusClassName = (status) => "db-status db-status--" + status;
+
 export default function OrdersPage() {
   const { orders, loading, newOrder, clearNewOrder, updateStatus } = useOrders();
   const [statusFilter, setStatusFilter] = useState("all");
@@ -30,11 +32,19 @@ export default function OrdersPage() {
       <div className="db-stats">
         <div className="db-stat"><span>{orders.length}</span>Total orders</div>
         <div className="db-stat"><span>{orders.filter((o) => o.status === "new").length}</span>New</div>
+        <div className="db-stat db-status--cancelled"><span>{orders.filter((o) => o.status === "cancelled").length}</span>Cancelled</div>
+        <div className="db-stat db-status--delivered"><span>{orders.filter((o) => o.status === "delivered").length}</span>Delivered</div>
+        <div className="db-stat db-status--confirmed"><span>{orders.filter((o) => o.status === "confirmed").length}</span>Confirmed</div>
+        <div className="db-stat db-status--shipped"><span>{orders.filter((o) => o.status === "shipped").length}</span>Shipped</div>
         <div className="db-stat"><span>{totalToday} DA</span>Today&apos;s revenue</div>
       </div>
 
       <div className="db-filters">
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+        <select
+          className={statusFilter === "all" ? undefined : statusClassName(statusFilter)}
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+        >
           <option value="all">All statuses</option>
           {STATUSES.map((s) => (
             <option key={s} value={s}>{s}</option>
@@ -83,7 +93,11 @@ export default function OrdersPage() {
                   <td>{o.quantity}</td>
                   <td>{o.total} DA</td>
                   <td>
-                    <select value={o.status} onChange={(e) => updateStatus(o.id, e.target.value)}>
+                    <select
+                      className={statusClassName(o.status)}
+                      value={o.status}
+                      onChange={(e) => updateStatus(o.id, e.target.value)}
+                    >
                       {STATUSES.map((s) => (
                         <option key={s} value={s}>{s}</option>
                       ))}
