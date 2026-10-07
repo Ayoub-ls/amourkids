@@ -4,6 +4,7 @@ import NotificationToast from "./NotificationToast";
 import "./dashboard.css";
 
 const STATUSES = ["new", "confirmed", "shipped", "delivered", "cancelled"];
+const DA_PER_USD = 251;
 
 const statusClassName = (status) => "db-status db-status--" + status;
 
@@ -113,6 +114,7 @@ export default function OrdersPage() {
   const deliveredRevenue = orders
     .filter((o) => o.status === "delivered")
     .reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+  const deliveredRevenueUsd = deliveredRevenue / DA_PER_USD;
   const timeline = useMemo(() => buildOrderTimeline(orders), [orders]);
 
   return (
@@ -128,6 +130,7 @@ export default function OrdersPage() {
         <div className="db-stat db-status--shipped"><span>{orders.filter((o) => o.status === "shipped").length}</span>Shipped</div>
         <div className="db-stat"><span>{totalToday} DA</span>Today&apos;s revenue</div>
         <div className="db-stat db-stat--revenue"><span>{deliveredRevenue} DA</span>Delivered revenue</div>
+        <div className="db-stat db-stat--revenue"><span>${deliveredRevenueUsd.toLocaleString(undefined, { maximumFractionDigits: 2 })}</span>Delivered revenue (USD)</div>
       </div>
 
       <OrdersTimelineChart data={timeline} />
