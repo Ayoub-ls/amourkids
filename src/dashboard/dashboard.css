@@ -19,6 +19,26 @@
 .db-stats { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
 .db-stat { background: #fff; border: 1px solid #E4E7EC; border-radius: 12px; padding: 16px 20px; min-width: 160px; }
 .db-stat span { display: block; font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+.db-stat--revenue { color: #075b3a; background: #ecfdf3; border-color: #abefc6; }
+
+.db-chart-card { background: #fff; border: 1px solid #E4E7EC; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.db-chart-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.db-chart-heading h2 { font-size: 16px; margin: 0; }
+.db-chart-heading p { margin: 3px 0 0; color: #667085; font-size: 13px; }
+.db-chart-legend { display: flex; flex-wrap: wrap; gap: 14px; color: #4b5262; font-size: 13px; }
+.db-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.db-chart-legend span::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #2563eb; }
+.db-chart-legend .db-legend-delivered::before { background: #059669; }
+.db-chart-scroll { overflow-x: auto; }
+.db-chart { display: block; min-width: 620px; width: 100%; height: auto; }
+.db-chart-grid { stroke: #eaecf0; stroke-width: 1; }
+.db-chart-y-label, .db-chart-x-label { fill: #98a2b3; font-size: 11px; }
+.db-chart-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.db-chart-line--all { stroke: #2563eb; }
+.db-chart-line--delivered { stroke: #059669; }
+.db-chart-point { stroke: #fff; stroke-width: 2; }
+.db-chart-point--all { fill: #2563eb; }
+.db-chart-point--delivered { fill: #059669; }
 
 .db-filters { display: flex; gap: 12px; margin-bottom: 16px; }
 .db-filters select { padding: 8px 12px; border: 1px solid #D0D5DD; border-radius: 8px; font: inherit; background: #fff; }
@@ -71,3 +91,11 @@
 .db-login-card button { margin-top: 6px; padding: 10px; border: 0; border-radius: 8px; background: #14161B; color: #fff; font-weight: 600; cursor: pointer; }
 .db-login-card button:disabled { opacity: .6; cursor: default; }
 .db-error { color: #C0341F; font-size: 13px; }
+
+@media (max-width: 640px) {
+  .db-main { padding: 16px; }
+  .db-header { padding: 12px 16px; gap: 12px; }
+  .db-user span { display: none; }
+  .db-chart-card { padding: 16px; }
+  .db-chart-heading { flex-direction: column; }
+}
