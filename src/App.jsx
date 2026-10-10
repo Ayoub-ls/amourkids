@@ -4,7 +4,9 @@ import ProtectedRoute from "./dashboard/ProtectedRoute";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import Login from "./dashboard/Login";
 import OrdersPage from "./dashboard/OrdersPage";
+import QuizOrdersPage from "./dashboard/QuizOrdersPage";
 import PixelTracker from "./shared/PixelTracker";
+import QuizFunnel from "./shared/QuizFunnel";
 
 import EngBook from './landing-pages/engbook/engbook.jsx'
 import EngProb from './landing-pages/engbook/engprob.jsx'
@@ -65,6 +67,7 @@ export default function App() {
         {/* English words book funnel */}
         <Route path="/engprob" element={<EngProb ctaHref="/engprob/engbook" />} />
         <Route path="/engprob/engbook" element={<EngBook backHref="/engprob" />} />
+        <Route path="/quiz" element={<QuizFunnel />} />
 
         {/* Cleaning kit funnel - one route pair per avatar/ad creative */}
         <Route path="/kit/man-baf" element={<ManBafProb ctaHref="/kit/man-baf/order" />} />
@@ -105,6 +108,7 @@ export default function App() {
           </AuthProvider>
         }>
           <Route index element={<OrdersPage />} />
+          <Route path="quiz-orders" element={<QuizOrdersPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

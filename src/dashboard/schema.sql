@@ -13,8 +13,12 @@ create table if not exists public.orders (
   quantity    int  not null,
   unit_price  int  not null,
   total       int  not null,
-  status      text not null default 'new'     -- 'new' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'
+  status      text not null default 'new',    -- 'new' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'
+  quiz_answers jsonb                          -- answers collected by the quiz funnel
 );
+
+-- Safe to run on an existing orders table that was created before quiz orders.
+alter table public.orders add column if not exists quiz_answers jsonb;
 
 alter table public.orders enable row level security;
 

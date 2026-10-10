@@ -18,6 +18,7 @@ export default function DashboardLayout() {
         <div className="db-brand">Orders dashboard</div>
         <nav className="db-nav">
           <Link to="/dashboard">Orders</Link>
+          <Link to="/dashboard/quiz-orders">Quiz orders</Link>
         </nav>
         <div className="db-user">
           <span>{user?.email}</span>

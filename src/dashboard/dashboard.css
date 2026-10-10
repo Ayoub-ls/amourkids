@@ -13,6 +13,9 @@
 .db-user button:hover { background: #34394A; }
 
 .db-main { padding: 24px; max-width: 1200px; margin: 0 auto; }
+.db-page-heading { margin-bottom: 20px; }
+.db-page-heading h1 { margin: 0; font-size: 24px; }
+.db-page-heading p { margin: 4px 0 0; color: #667085; }
 
 .db-loading { padding: 40px; text-align: center; color: #6B7280; }
 
@@ -77,6 +80,16 @@
   border-color: #fdba74;
 }
 .db-row-new { background: #FFF9E8; }
+.db-subtle { color: #667085; font-size: 12px; }
+.db-quiz-table { white-space: normal; }
+.db-quiz-table th, .db-quiz-table td { vertical-align: top; }
+.db-quiz-answers-cell { min-width: 260px; }
+.db-quiz-answers { display: grid; gap: 7px; margin: 0; text-align: right; }
+.db-quiz-answers div { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 8px; padding-bottom: 7px; border-bottom: 1px solid #eef0f3; }
+.db-quiz-answers div:last-child { padding-bottom: 0; border-bottom: 0; }
+.db-quiz-answers dt { color: #667085; font-size: 12px; font-weight: 600; }
+.db-quiz-answers dd { margin: 0; font-size: 13px; overflow-wrap: anywhere; }
+.db-quiz-empty { color: #98a2b3; font-size: 13px; }
 
 .db-toast { position: fixed; top: 18px; right: 18px; z-index: 50; background: #14161B; color: #fff; padding: 14px 18px; border-radius: 12px; box-shadow: 0 12px 28px rgba(0,0,0,.25); max-width: 320px; cursor: pointer; animation: db-toast-in .2s ease-out; }
 .db-toast-title { font-weight: 700; margin-bottom: 4px; }
