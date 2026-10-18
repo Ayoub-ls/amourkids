@@ -47,6 +47,9 @@ const CSS = `@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaa
 .eng .btn small{display:block;font-family:var(--font-body);font-weight:500;font-size:14px;opacity:.92}
 .eng .top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .eng .back{background:none;border:0;font:inherit;font-size:15px;color:var(--muted);cursor:pointer;padding:6px 2px}
+.eng .phone{display:inline-flex;align-items:center;gap:6px;color:var(--red);font-weight:800;font-size:16px;text-decoration:none;direction:ltr}
+.eng .phone::before{content:"☎";font-size:18px;line-height:1}
+.eng .phone:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
 .eng .offer-hero{text-align:center;padding:6px 0 34px}
 .eng .offer-hero h1{font-size:31px;margin-bottom:12px}
 .eng .offer-hero .sub{color:var(--muted);font-size:18px;margin-bottom:24px}
@@ -151,7 +154,10 @@ export default function EngBook({ backHref = "/" }) {
       <main>
         <div className="strip" />
         <div className="wrap">
-          <div className="top"><a className="back" href={backHref}>‹ رجوع</a></div>
+          <div className="top">
+            <a className="back" href={backHref}>‹ رجوع</a>
+            <a className="phone" href="tel:0652651635" aria-label="اتصل بنا على 0652651635">0652651635</a>
+          </div>
 
           <section className="offer-hero">
             <h1>ولدك يتعلم أول كلماتو بالإنجليزية... و هو يلعب</h1>
