@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OrderFormQuiz from "./OrderFormQuiz";
+import quizVideo from "./images/eng/QUIZ.mp4";
 
 const PRICE = { 1: 7900, 2: 6900, 4: 5900 };
 const OFFERS = [
@@ -53,12 +54,6 @@ function buildQuestions(gender) {
   ];
 }
 
-const STEPS = [
-  ["👀", "يشوف الصورة"],
-  ["👆", "يضغط عليها"],
-  ["🔊", "يسمع الكلمة بالإنجليزية"],
-];
-
 /*
   Style: clean and calm. Indigo accent, soft borders, light shadows, Tajawal only.
   OrderForm class names (.opts .opt .field .f .row2 .seg .total .btn .trust .err .done) are kept.
@@ -100,10 +95,7 @@ const CSS = `
 .qf-summary b{display:block;color:var(--muted);font-size:13px;font-weight:500}
 .qf-match{background:var(--green-soft);border-radius:14px;padding:14px 16px;margin:12px 0;font-weight:500;color:#35492B}
 .qf-section-title{font-size:21px;font-weight:800;line-height:1.5;margin:28px 0 6px}
-.qf-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
-.qf-step{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:#FFFDF8;border:1px solid var(--line);border-radius:16px;padding:16px 6px 14px;font-size:15px;font-weight:700;line-height:1.45}
-.qf-step i{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--brand-soft);font-style:normal;font-size:24px;line-height:1}
-.qf-step em{position:absolute;top:8px;inset-inline-start:10px;color:var(--muted);font-style:normal;font-size:13px;font-weight:500}
+.qf-demo-video{display:block;width:100%;margin:18px 0;border:1px solid var(--line);border-radius:16px;background:#000;box-shadow:0 8px 20px rgba(60,45,20,.1)}
 .qf-routine{font-size:16px!important;background:var(--brand-soft);border-radius:14px;padding:13px 16px;color:var(--brand-dark)!important;font-weight:500}
 
 .qf-cta{background:#FBF3E6;border:1px solid #E6DCC8;border-radius:20px;margin-top:30px;padding:24px 16px 20px}
@@ -250,15 +242,10 @@ export default function QuizFunnel() {
 
             <h3 className="qf-section-title">📖 علاش هذا الكتاب مناسب لطفلك؟</h3>
             <p>الكتاب يخلي الطفل يشوف الصورة، يضغط عليها، ويسمع الكلمة بالإنجليزية. هكذا يقدر يربط بين الصورة والكلمة والصوت بطريقة بسيطة وممتعة.</p>
-            <div className="qf-steps">
-              {STEPS.map(([icon, label], i) => (
-                <div className="qf-step" key={label}>
-                  <em>{i + 1}</em>
-                  <i aria-hidden="true">{icon}</i>
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
+            <video className="qf-demo-video" controls playsInline preload="metadata">
+              <source src={quizVideo} type="video/mp4" />
+              متصفحك لا يدعم تشغيل الفيديو.
+            </video>
             <p className="qf-routine">تقدروا تستعملوه حتى غير 5–10 دقايق في اليوم كروتين صغير لتعلم كلمات جديدة.</p>
 
             <div className="qf-cta">
