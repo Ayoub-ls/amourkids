@@ -60,6 +60,11 @@ export default function OrderForm({
     setSending(true);
     setSendErr("");
 
+    const { data: { session } } = await supabase.auth.getSession();
+
+    console.log("SUPABASE SESSION:", session);
+    console.log("USER:", session?.user);
+
     const { error } = await supabase.from("orders").insert({
       product,
       variant,
@@ -216,7 +221,7 @@ export default function OrderForm({
       </div>
 
       <button className="btn" type="submit" disabled={sending}>
-        {sending ? "جاري الإرسال..." : "أكد طلبي – الدفع عند الاستلام"}
+        {sending ? "جاري الإرسال..." : " أكد طلبي – الدفع عند الاستلام"}
         <small>نتصلو بيك باش نأكدو الطلب</small>
       </button>
       <div className="err" role="alert" style={{ textAlign: "center", marginTop: 10 }}>

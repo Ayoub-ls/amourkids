@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import OrderForm from "../../shared/OrderForm";
 
-import bookImage from './images/engboook.jpeg'
+import bookCoverImage from "./images/engbook2.png";
+import bookTransportImage from "./images/engbook1.png";
+import bookTransportDetailImage from "./images/engbook3.png";
+import bookSportsImage from "./images/engbook4.png";
 
 /*
   engbook.jsx  -  Page 2 of the funnel (the product + order form).
@@ -55,6 +58,8 @@ const CSS = `@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaa
 .eng .offer-hero .sub{color:var(--muted);font-size:18px;margin-bottom:24px}
 .eng .frame{background:var(--surface);border-radius:22px;padding:0 0 20px;overflow:hidden;box-shadow:0 10px 28px rgba(20,30,70,.18);margin-bottom:24px}
 .eng .frame img{width:100%}
+.eng .product-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 8px 0;background:var(--surface)}
+.eng .product-gallery img{width:100%;height:112px;object-fit:cover;border-radius:12px}
 .eng .price-line{display:flex;align-items:baseline;justify-content:center;gap:10px;padding-top:16px}
 .eng .price-line .now{font-family:var(--font-display);font-weight:800;font-size:38px;color:var(--red)}
 .eng .price-line .unit{font-weight:700}
@@ -164,7 +169,12 @@ export default function EngBook({ backHref = "/" }) {
             <p className="sub">كتاب ناطق فيه +470 صوت و صور حقيقية. لمسة وحدة، و الكلمة تتنطق.</p>
             <div className="frame">
               <div className="strip" />
-              <img src={bookImage} alt="First English Words Sound Book" width="469" height="545" />
+              <img src={bookCoverImage} alt="First English Words Sound Book cover" width="315" height="351" />
+              <div className="product-gallery">
+                <img src={bookTransportImage} alt="Transport words inside the English sound book" width="378" height="406" />
+                <img src={bookTransportDetailImage} alt="More transport words in the English sound book" width="370" height="401" />
+                <img src={bookSportsImage} alt="Sports words inside the English sound book" width="370" height="401" />
+              </div>
               <div className="price-line"><span className="now">7900</span><span className="unit">دج</span></div>
             </div>
             <button className="btn" type="button" onClick={goOrder}>اطلب الآن – الدفع عند الاستلام</button>
