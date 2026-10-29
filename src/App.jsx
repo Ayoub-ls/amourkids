@@ -9,6 +9,7 @@ import PixelTracker from "./shared/PixelTracker";
 import QuizFunnel from "./shared/QuizFunnel";
 
 import EngBook from './landing-pages/engbook/engbook.jsx'
+import NewEngBook from './landing-pages/engbook/newengbook.jsx'
 import EngProb from './landing-pages/engbook/engprob.jsx'
 
 import ManBafProb from './landing-pages/speakerphone/man-baf/cleanprob.jsx'
@@ -67,6 +68,7 @@ export default function App() {
         {/* English words book funnel */}
         <Route path="/engprob" element={<EngProb ctaHref="/engprob/engbook" />} />
         <Route path="/engprob/engbook" element={<EngBook backHref="/engprob" />} />
+        <Route path="/engprob/newengbook" element={<NewEngBook backHref="/engprob" />} />
         <Route path="/quiz" element={<QuizFunnel />} />
 
         {/* Cleaning kit funnel - one route pair per avatar/ad creative */}
