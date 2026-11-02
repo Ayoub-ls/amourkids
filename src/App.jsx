@@ -67,7 +67,7 @@ export default function App() {
       <Routes>
         {/* English words book funnel */}
         <Route path="/engprob" element={<EngProb ctaHref="/engprob/engbook" />} />
-        <Route path="/engprob/engbook" element={<EngBook backHref="/engprob" />} />
+        <Route path="/engprob/engbook" element={<NewEngBook backHref="/engprob" />} />
         <Route path="/engprob/newengbook" element={<NewEngBook backHref="/engprob" />} />
         <Route path="/quiz" element={<QuizFunnel />} />
 

@@ -121,13 +121,13 @@ const CSS = `@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaa
 .eng .sticky .p small{display:block;font-family:var(--font-body);font-weight:500;font-size:12px;color:var(--muted)}
 .eng .sticky .btn{font-size:18px;padding:12px 14px}`;
 
-const PRICE = { 1: 7900, 2: 6900, 4: 5900 }; // price per book by quantity
+const PRICE = { 1: 7900, 2: 7200, 3: 6900 }; // price per book by quantity
 
 
 const OFFERS = [
   { q: 1, title: "كتاب واحد", note: "للولد اللي يبدأ", per: false },
-  { q: 2, title: "كتابين", note: "6900 دج للكتاب • 13800 دج", save: "وفّر 2000 دج", per: true },
-  { q: 4, title: "4 كتب", note: "5900 دج للكتاب • 23600 دج", save: "وفّر 8000 دج", per: true },
+  { q: 2, title: "كتابين", note: "7200 دج للكتاب • 14400 دج", save: "وفّر 1400 دج", per: true },
+  { q: 3, title: "3 كتب", note: "6900 دج للكتاب • 20700 دج", save: "وفّر 3000 دج", per: true },
 ];
 
 const FAQ = [
@@ -135,7 +135,7 @@ const FAQ = [
   ["كيفاش ندفع؟", "الدفع عند الاستلام. تستلم الكتاب و تدفع للموزع."],
   ["واش تتصلو بيا قبل الشحن؟", "إيه. نتصلو بيك في الهاتف باش نأكدو الطلب و العنوان."],
   ["الأصوات بأي لغة؟", "الكلمات بالإنجليزية، ينطقها الكتاب لولدك مع كل صورة."],
-  ["نقدر نطلب أكثر من كتاب؟", "إيه. كتابين بـ 6900 دج للكتاب، و 4 كتب بـ 5900 دج للكتاب."],
+  ["نقدر نطلب أكثر من كتاب؟", "إيه. كتابين بـ 7200 دج للكتاب، و 3 كتب بـ 6900 دج للكتاب."],
 ];
 
 export default function EngBook({ backHref = "/" }) {
