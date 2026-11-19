@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { supabase } from "./supabaseClient";
 import { getBaladiyas, WILAYAS } from "./wilayas";
-import { trackPurchase } from "./pixel";
+import { trackInitiateCheckout } from "./pixel";
 
 /*
   OrderForm.jsx  -  the order form used by every product's page 2.
@@ -87,9 +87,9 @@ export default function OrderForm({
       return;
     }
 
-    // Order is safely in Supabase -> tell Meta. Only fires on success,
-    // so failed submissions never count as purchases.
-    trackPurchase({ product, variant, total, quantity: qty, wilaya: form.wilaya });
+    // Order is safely in Supabase, so this is a real checkout initiation.
+    // Failed submissions never fire this event.
+    trackInitiateCheckout({ product, variant });
 
     setDone(phone);
   }

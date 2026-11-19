@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
     const { orderId } = await req.json()
     const { data: order, error } = await db.from('orders').select('*, products(id,currency), landing_pages(meta_pixel_id)').eq('id', orderId).single()
     if (error || !order) return json({ error: 'Order not found' }, 404)
-    if (order.status !== 'delivered') return json({ error: 'Only delivered orders can generate Purchase.' }, 400)
+    if (order.status !== 'confirmed') return json({ error: 'Only confirmed orders can generate Purchase.' }, 400)
     if (order.purchase_event_sent) return json({ sent: true, duplicate: true })
     const eventId = order.purchase_event_id || crypto.randomUUID()
     await db.from('orders').update({ purchase_event_id: eventId, purchase_conversion_status: 'pending', purchase_event_error: null }).eq('id', order.id).eq('purchase_event_sent', false)

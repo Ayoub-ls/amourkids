@@ -1,22 +1,16 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { trackPageView, trackViewContent, trackInitiateCheckout } from "./pixel";
+import { trackPageView, trackViewContent } from "./pixel";
 
 /*
   <PixelTracker />  -  render it ONCE, inside <BrowserRouter> (see README).
 
   On every route change it fires:
     - PageView                       (always, except dashboard pages)
-    - ViewContent                    (on a page-1 / problem page)
-    - InitiateCheckout               (on a page-2 / order page)
+    - ViewContent                    (on landing/problem pages)
 
-  It works out product + variant from the URL, so you never touch the 16
-  landing pages:
-    /kit/man-baf            -> ViewContent,        variant "man-baf"
-    /kit/man-baf/order      -> InitiateCheckout,   variant "man-baf"
-    /engprob                -> ViewContent,        variant "engbook"
-    /engprob/engbook        -> InitiateCheckout,   variant "engbook"
-  A new /kit/<anything> route is picked up automatically.
+  InitiateCheckout is fired only after a successful order submission,
+  not merely when an order form route is opened.
 
   Dashboard pages are skipped on purpose, so your own visits never
   pollute the pixel data.
@@ -54,11 +48,7 @@ export default function PixelTracker() {
     const page = parsePath(pathname);
     if (!page) return;
 
-    if (page.isOrderPage) {
-      trackInitiateCheckout(page);
-    } else {
-      trackViewContent(page);
-    }
+    trackViewContent(page);
   }, [pathname]);
 
   return null;

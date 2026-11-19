@@ -16,7 +16,7 @@ Deno.serve(async (req) => {
     if (status === 'delivered') update.delivered_at = new Date().toISOString()
     const { data: order, error } = await db.from('orders').update(update).eq('id', orderId).select().single()
     if (error) throw error
-    if (status !== 'delivered' || order.purchase_event_sent) return json({ order, conversion: 'not_required' })
+    if (status !== 'confirmed' || order.purchase_event_sent) return json({ order, conversion: 'not_required' })
     const capi = await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/meta-purchase`, { method: 'POST', headers: { Authorization: `Bearer ${jwt}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ orderId }) })
     const result = await capi.json().catch(() => ({}))
     if (!capi.ok) {

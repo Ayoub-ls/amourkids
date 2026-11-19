@@ -48,8 +48,19 @@ export function trackInitiateCheckout({ product, variant }) {
   });
 }
 
-/** Fire once an order is successfully written to Supabase. */
-export function trackPurchase({ product, variant, total, quantity, wilaya }) {
+/** Fire once an order status becomes confirmed. */
+export function trackPurchase({ orderId, product, variant, total, quantity, wilaya }) {
+  const dedupeKey = `pixel_purchase_${orderId}`;
+
+  if (orderId && typeof window !== "undefined") {
+    try {
+      if (window.localStorage.getItem(dedupeKey)) return;
+      window.localStorage.setItem(dedupeKey, "1");
+    } catch {
+      // Storage can be unavailable; the dashboard transition guard still prevents normal duplicates.
+    }
+  }
+
   trackEvent("Purchase", {
     value: total,
     currency: "DZD",
@@ -59,9 +70,8 @@ export function trackPurchase({ product, variant, total, quantity, wilaya }) {
     num_items: quantity,
   });
 
-  // Custom event with extra detail, so you can filter/build audiences
-  // per avatar or per wilaya later in Events Manager.
   trackCustomEvent("COD_Order", {
+    order_id: orderId,
     product,
     variant,
     wilaya,

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../shared/supabaseClient";
+import { trackPurchase } from "../shared/pixel";
 
 // Short beep using the Web Audio API, so we don't need an audio file asset.
 function playBeep() {
@@ -71,8 +72,23 @@ export function useOrders() {
   }, []);
 
   async function updateStatus(id, status) {
+    const previousOrder = orders.find((order) => order.id === id);
     const { error } = await supabase.from("orders").update({ status }).eq("id", id);
-    if (error) console.error("useOrders: status update failed", error);
+    if (error) {
+      console.error("useOrders: status update failed", error);
+      return;
+    }
+
+    if (status === "confirmed" && previousOrder?.status !== "confirmed") {
+      trackPurchase({
+        orderId: id,
+        product: previousOrder?.product,
+        variant: previousOrder?.variant,
+        total: Number(previousOrder?.total) || 0,
+        quantity: Number(previousOrder?.quantity) || 1,
+        wilaya: previousOrder?.wilaya,
+      });
+    }
   }
 
   return {
