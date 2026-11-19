@@ -340,7 +340,7 @@ export default function NewEngBook({ backHref = "/" }) {
           </div>
         </section>
 
-        <div className="foot"><Star />الدفع عند الاستلام · التوصيل مجاني لكل الولايات</div>
+        <div className="foot"><Star />الدفع عند الاستلام · التوصيل لكل الولايات</div>
 
         <div className={"sticky" + (hideSticky ? " off" : "")}>
           <div className="inner">

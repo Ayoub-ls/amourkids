@@ -232,7 +232,7 @@ export default function OrderFormQuiz({
 
       <div className="trust">
         <div>الدفع عند الاستلام</div>
-        <div>التوصيل مجاني لكل الولايات</div>
+        <div>التوصيل لكل الولايات</div>
         <div>نتصلو بيك في الهاتف قبل الشحن</div>
       </div>
     </form>
